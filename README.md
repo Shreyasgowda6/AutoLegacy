@@ -1,4 +1,6 @@
-# KnowLegacy AI
+# AutoLegacy
+
+Preserving decades of automotive experience.
 
 Preserve practical knowledge from experienced automobile mechanics and make approved expertise available to junior mechanics.
 
