@@ -1,0 +1,82 @@
+[
+  {
+    "id": "expert-01",
+    "name": "James Miller",
+    "specialty": "Engine mechanical",
+    "experience_years": 32,
+    "bio": "A synthetic specialist in engine mechanical, sharing practical observations, diagnostic reasoning and lessons from workshop cases.",
+    "synthetic": true
+  },
+  {
+    "id": "expert-02",
+    "name": "Sofia Weber",
+    "specialty": "Cooling system",
+    "experience_years": 28,
+    "bio": "A synthetic specialist in cooling system, sharing practical observations, diagnostic reasoning and lessons from workshop cases.",
+    "synthetic": true
+  },
+  {
+    "id": "expert-03",
+    "name": "Martin Keller",
+    "specialty": "Ignition and intake",
+    "experience_years": 25,
+    "bio": "A synthetic specialist in ignition and intake, sharing practical observations, diagnostic reasoning and lessons from workshop cases.",
+    "synthetic": true
+  },
+  {
+    "id": "expert-04",
+    "name": "Dana Brooks",
+    "specialty": "Starting and electrical",
+    "experience_years": 30,
+    "bio": "A synthetic specialist in starting and electrical, sharing practical observations, diagnostic reasoning and lessons from workshop cases.",
+    "synthetic": true
+  },
+  {
+    "id": "expert-05",
+    "name": "Raj Mehta",
+    "specialty": "Engine mounts and vibration",
+    "experience_years": 35,
+    "bio": "A synthetic specialist in engine mounts and vibration, sharing practical observations, diagnostic reasoning and lessons from workshop cases.",
+    "synthetic": true
+  },
+  {
+    "id": "expert-06",
+    "name": "Ana Costa",
+    "specialty": "Fuel efficiency",
+    "experience_years": 27,
+    "bio": "A synthetic specialist in fuel efficiency, sharing practical observations, diagnostic reasoning and lessons from workshop cases.",
+    "synthetic": true
+  },
+  {
+    "id": "expert-07",
+    "name": "Omar Hassan",
+    "specialty": "Turbo and boost",
+    "experience_years": 29,
+    "bio": "A synthetic specialist in turbo and boost, sharing practical observations, diagnostic reasoning and lessons from workshop cases.",
+    "synthetic": true
+  },
+  {
+    "id": "expert-08",
+    "name": "Elena Rossi",
+    "specialty": "Leaks and seals",
+    "experience_years": 33,
+    "bio": "A synthetic specialist in leaks and seals, sharing practical observations, diagnostic reasoning and lessons from workshop cases.",
+    "synthetic": true
+  },
+  {
+    "id": "expert-09",
+    "name": "Chris Bennett",
+    "specialty": "Exhaust and emissions",
+    "experience_years": 26,
+    "bio": "A synthetic specialist in exhaust and emissions, sharing practical observations, diagnostic reasoning and lessons from workshop cases.",
+    "synthetic": true
+  },
+  {
+    "id": "expert-10",
+    "name": "Luca Fischer",
+    "specialty": "Electrical",
+    "experience_years": 31,
+    "bio": "A synthetic specialist in electrical, sharing practical observations, diagnostic reasoning and lessons from workshop cases.",
+    "synthetic": true
+  }
+]

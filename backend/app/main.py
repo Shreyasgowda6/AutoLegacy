@@ -1,19 +1,22 @@
 import logging
 
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.config import load_settings
 from app.ollama import OllamaError
 from app.rag import RAG
-from app.schemas import ChatRequest, ChatResponse, Knowledge
+from app.capture import Capture, Transcriber
+from app.schemas import ChatRequest, ChatResponse, Knowledge, Expert, FeedbackInput, FeedbackReceipt, InterviewInput, SaveKnowledge
 
 
 def create_app(settings=None, rag=None):
     settings = settings or load_settings()
     engine = rag or RAG(settings)
-    app = FastAPI(title='AutoLegacy Demo RAG', version='0.2.0', description='Synthetic JSON knowledge → retrieval → local Ollama answer.')
+    capture = Capture(engine)
+    audio = Transcriber(settings)
+    app = FastAPI(title='AutoLegacy Demo RAG', version='0.3.0', description='Capture expert knowledge and retrieve grounded answers from JSON.')
     app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins,
                        allow_methods=['GET', 'POST'], allow_headers=['Content-Type'])
 
@@ -37,6 +40,26 @@ def create_app(settings=None, rag=None):
     @app.post('/api/chat', response_model=ChatResponse)
     def chat(request: ChatRequest):
         return engine.ask(request)
+
+    @app.get('/api/experts', response_model=list[Expert])
+    def experts():
+        return capture.experts()
+
+    @app.post('/api/feedback', response_model=FeedbackReceipt, status_code=201)
+    def feedback(request: FeedbackInput):
+        return capture.feedback(request)
+
+    @app.post('/api/interview/extract', response_model=Knowledge)
+    def extract(request: InterviewInput):
+        return capture.draft(request)
+
+    @app.post('/api/knowledge', response_model=Knowledge, status_code=201)
+    def save(request: SaveKnowledge):
+        return capture.save(request)
+
+    @app.post('/api/transcribe')
+    def transcribe(file: UploadFile = File(...)):
+        return audio.transcribe(file)
 
     return app
 

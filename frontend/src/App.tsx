@@ -1,6 +1,8 @@
-import React, { useState, type FormEvent } from 'react';
+import React, { useEffect, useRef, useState, type FormEvent } from 'react';
 import { sampleAnswer } from './data/knowledge';
-import { api, type ChatResponse } from './api';
+import { api, type ChatResponse, type Expert } from './api';
+import { FeedbackModal } from './components/FeedbackModal';
+import { InterviewPage } from './components/InterviewPage';
 
 function CarWatermark() {
   return <svg className="car-watermark" viewBox="0 0 1100 320" aria-hidden="true"><path className="car-body" d="M30 232 76 177q21-25 68-37l171-39 130-77q39-23 87-23h174q55 0 98 31l105 76 127 35q38 11 65 41l35 43 22 20v49H30z"/><path className="car-window" d="m356 111 111-66q15-9 37-9h68v75zm235-75h49q48 0 83 28l84 47H591z"/><path className="car-line" d="M75 225h910M43 254h66m831 0h82"/><circle className="car-wheel" cx="246" cy="263" r="57"/><circle className="car-hub" cx="246" cy="263" r="22"/><circle className="car-wheel" cx="857" cy="263" r="57"/><circle className="car-hub" cx="857" cy="263" r="22"/></svg>;
@@ -12,17 +14,49 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [feedback, setFeedback] = useState<'gap' | 'expert' | null>(null);
-  const [sent, setSent] = useState(false);
   const [helpful, setHelpful] = useState<boolean | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [page, setPage] = useState(location.hash === '#interview' ? 'interview' : 'home');
+  const pageRef = useRef(page);
+  pageRef.current = page;
+  const [experts, setExperts] = useState<Expert[]>([]);
+  const [expertsError, setExpertsError] = useState('');
+  const [selectedExpert, setSelectedExpert] = useState('');
   const answer = sampleAnswer;
+  function scrollToSection(target: string) {
+    if (target === 'home' || target === 'interview') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    const element = document.getElementById(target);
+    const header = document.querySelector('header')?.getBoundingClientRect().height || 76;
+    if (element) window.scrollTo({ top: Math.max(0, element.getBoundingClientRect().top + window.scrollY - header - 20), behavior: 'smooth' });
+  }
+  function navigate(target: string) {
+    history.pushState(null, '', `#${target}`);
+    setPage(target === 'interview' ? 'interview' : 'home'); setMenuOpen(false);
+    requestAnimationFrame(() => scrollToSection(target));
+  }
+  function loadExperts() {
+    setExpertsError('');
+    api.experts().then(setExperts).catch(error => setExpertsError(error instanceof Error ? error.message : 'Could not load experts.'));
+  }
+  useEffect(() => {
+    loadExperts();
+    const sync = () => { setPage(location.hash === '#interview' ? 'interview' : 'home'); setMenuOpen(false); requestAnimationFrame(() => scrollToSection(location.hash.slice(1) || 'home')); };
+    window.addEventListener('hashchange', sync); window.addEventListener('popstate', sync);
+    return () => { window.removeEventListener('hashchange', sync); window.removeEventListener('popstate', sync); };
+  }, []);
+  useEffect(() => { requestAnimationFrame(() => scrollToSection(location.hash.slice(1) || 'home')); }, [page]);
+  function interview(expert: Expert) { setSelectedExpert(expert.id); navigate('interview'); }
+  const contributors = result?.sources.map(source => experts.find(expert => expert.id === source.expert_id)).filter((expert): expert is Expert => !!expert) || [];
+  const shownExperts = [...new Map(contributors.map(expert => [expert.id, expert])).values()];
   async function ask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!question.trim() || loading) return;
     const text = question.trim();
     setSubmitted(text); setResult(null); setError(''); setLoading(true); setHelpful(null);
     try {
-      setResult(await api.ask(text));
+      const response = await api.ask(text);
+      setResult(response.insufficient_evidence ? { ...response, answer: 'No information available.', sources: [] } : response);
+      if (response.insufficient_evidence && pageRef.current === 'home') openFeedback('gap');
       setQuestion('');
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Could not answer the question. Please try again.');
@@ -30,16 +64,15 @@ function App() {
       setLoading(false);
     }
   }
-  function send(event: FormEvent<HTMLFormElement>) { event.preventDefault(); setSent(true); }
-  function openFeedback(kind: 'gap' | 'expert') { setFeedback(kind); setSent(false); }
+  function openFeedback(kind: 'gap' | 'expert') { setFeedback(kind); }
   return <div className="app-shell">
     <CarWatermark />
     <header className="topbar">
-      <a className="brand" href="#home" aria-label="AutoLegacy home"><img src="/autolegacy-logo.png" alt="AutoLegacy"/></a>
-      <nav className={menuOpen ? 'open' : ''} aria-label="Main navigation"><a href="#home" onClick={() => setMenuOpen(false)}>Explore</a><a href="#questions" onClick={() => setMenuOpen(false)}>Questions</a><a href="#experts" onClick={() => setMenuOpen(false)}>Experts</a><a href="#about" onClick={() => setMenuOpen(false)}>About</a></nav>
+      <a className="brand" href="#home" aria-label="AutoLegacy home" onClick={event => { event.preventDefault(); navigate('home'); }}><img src="/autolegacy-logo.png" alt="AutoLegacy"/></a>
+      <nav className={menuOpen ? 'open' : ''} aria-label="Main navigation">{[['home', 'Explore'], ['questions', 'Questions'], ['experts', 'Experts'], ['interview', 'Expert Interview'], ['about', 'About']].map(([target, label]) => <a key={target} href={`#${target}`} onClick={event => { event.preventDefault(); navigate(target); }}>{label}</a>)}</nav>
       <button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><span/><span/><span/></button>
     </header>
-    <main id="home" className="page-content">
+    {page === 'interview' ? <InterviewPage experts={experts} selectedExpert={selectedExpert} navigate={navigate}/> : <main id="home" className="page-content">
       <section className="hero">
         <p className="eyebrow">The Garage Handbook</p>
         <h1>Decades of know-how,<br/>ready when you need it.</h1>
@@ -60,12 +93,17 @@ function App() {
           <div className="helpful-row"><span>{helpful === null ? 'Was this helpful?' : helpful ? 'Thanks for your feedback.' : 'Thanks — tell us what was missing.'}</span><div><button className={helpful === true ? 'selected' : ''} onClick={() => setHelpful(true)}>Yes</button><button className={helpful === false ? 'selected' : ''} onClick={() => {setHelpful(false);openFeedback('gap');}}>Not quite</button></div></div>
         </article>
         <aside className="side-column">
-          <section className="panel expert-card" id="experts"><div className="section-label">Contributed by</div>{answer.experts.map(expert => <div className="expert-entry" key={expert.name}><div className="avatar">{expert.name.split(' ').map(n => n[0]).join('')}</div><div><h3>{expert.name}</h3><p>{expert.specialty} · {expert.experience}</p><p className="added">Added {expert.added}</p></div><span className="verified">✓ Expert</span></div>)}</section>
+          <section className="panel expert-card"><div className="section-label">{result?.insufficient_evidence ? 'Expert network' : 'Contributed by'}</div>{shownExperts.length ? shownExperts.map(expert => <div className="expert-entry" key={expert.id}><div className="avatar">{expert.name.split(' ').map(n => n[0]).join('')}</div><div><h3>{expert.name}</h3><p>{expert.specialty} · {expert.experience_years} years</p></div><span className="verified">Demo expert</span></div>) : answer.experts.map(expert => <div className="expert-entry" key={expert.name}><div className="avatar">{expert.name.split(' ').map(n => n[0]).join('')}</div><div><h3>{expert.name}</h3><p>{expert.specialty} · {expert.experience}</p><p className="added">Added {expert.added}</p></div><span className="verified">✓ Expert</span></div>)}<a className="directory-link" href="#experts" onClick={event => { event.preventDefault(); navigate('experts'); }}>View all {experts.length || ''} experts</a></section>
           <section className="panel documents-card"><div className="section-label">Related documents</div><ul>{answer.documents.map(doc => <li key={doc.title}><a href="#documents" onClick={e => e.preventDefault()}><span className="doc-arrow">↗</span><span>{doc.title}</span><small>{doc.type}</small></a></li>)}</ul><div className="feedback-links" id="about"><button onClick={() => openFeedback('gap')}>Report a knowledge gap <span>→</span></button><button onClick={() => openFeedback('expert')}>Ask an expert to update <span>→</span></button></div></section>
         </aside>
       </div>
-    </main>
-    {feedback && <div className="backdrop" onMouseDown={e => {if (e.target === e.currentTarget) setFeedback(null);}}><section className="modal" role="dialog" aria-modal="true" aria-labelledby="feedback-title"><button className="close" onClick={() => setFeedback(null)} aria-label="Close">×</button>{sent ? <div className="success"><span>✓</span><h2>Thanks for helping keep AutoLegacy current.</h2><p>Your note is saved in this demo and can be connected to your backend.</p><button className="primary" onClick={() => setFeedback(null)}>Done</button></div> : <><p className="eyebrow">{feedback === 'gap' ? 'Help improve this answer' : 'Expert update request'}</p><h2 id="feedback-title">{feedback === 'gap' ? 'What knowledge is missing?' : 'What should the expert review?'}</h2><p className="modal-intro">Your feedback helps keep automotive knowledge useful and up to date.</p><form onSubmit={send}><label>Topic<select defaultValue={feedback === 'gap' ? 'Missing step or detail' : 'Updated information'}><option>Missing step or detail</option><option>Vehicle-specific question</option><option>Possible correction</option><option>Updated information</option></select></label><label>Details<textarea required rows={4} placeholder="Describe the gap or update you’d like to see..."/></label><label>Email (optional)<input type="email" placeholder="you@example.com"/></label><button className="primary">Send feedback</button></form></>}</section></div>}
+      <section id="experts" className="expert-directory"><div className="section-label">Our expert network</div><h2>Meet the people behind the know-how.</h2><p className="directory-intro">Explore all {experts.length || ''} synthetic expert profiles and capture their practical knowledge in an interview.</p>
+        {expertsError && <p className="form-error" role="alert">{expertsError} <button className="text-button" onClick={loadExperts}>Retry</button></p>}
+        {!experts.length && !expertsError && <p role="status">Loading experts…</p>}
+        <div className="expert-grid">{experts.map(expert => <article className="panel directory-card" key={expert.id}><div className="expert-card-heading"><div className="avatar">{expert.name.split(' ').map(n => n[0]).join('')}</div><span className="synthetic-label">Synthetic profile</span></div><h3>{expert.name}</h3><p className="expert-specialty">{expert.specialty} · {expert.experience_years} years</p><p>{expert.bio}</p><button className="secondary" onClick={() => interview(expert)}>Interview this expert</button></article>)}</div>
+      </section>
+    </main>}
+    {feedback && <FeedbackModal kind={feedback} question={submitted} close={() => setFeedback(null)}/>}
   </div>;
 }
 export default App;

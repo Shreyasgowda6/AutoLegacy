@@ -1,8 +1,14 @@
 # AutoLegacy frontend
 
-Imported from [Shreyasgowda6/AutoLegacy, frontend branch](https://github.com/Shreyasgowda6/AutoLegacy/tree/frontend), source commit `e5e3de2`. The original layout, stylesheet, logo, initial sample answer, expert profile, related documents, helpfulness buttons and feedback forms are retained. Only search is connected to the local RAG backend: submitting a question updates the existing question-and-answer card. No knowledge-source sidebar, new navigation items, or mode toggle is added.
+Imported from [Shreyasgowda6/AutoLegacy, frontend branch](https://github.com/Shreyasgowda6/AutoLegacy/tree/frontend), source commit `e5e3de2`. The original Garage Handbook layout, logo, initial sample answer, related documents, helpfulness buttons and feedback form design are retained. Search, feedback and expert interview capture are connected to the local backend. The expert directory and interview page extend the same visual style; there is no mode toggle or separate knowledge-source sidebar.
 
-The expert profile and related documents remain the original presentation content; they are not returned by RAG or evidence of authorship of a generated answer. Feedback forms retain their original demo behavior. Their backend integration is deferred.
+The original Garage Handbook style and related documents remain. The expert section now lists ten synthetic profiles and each can be selected for an interview. Feedback reports are saved through the backend; a no-information answer automatically opens the gap report. The sticky header and Explore navigation let you return to the page top.
+
+## Expert Interview
+
+Choose Expert Interview in the header or Interview this expert in the directory. Select an expert, paste text or record/upload audio, extract the structured knowledge, review/edit it, and choose Add to knowledge base. The next search includes the new JSON record automatically.
+
+Recording requires browser microphone permission. Install the updated backend requirements before using local audio transcription; the first use downloads a small Whisper model. Text capture does not need Whisper. Audio is temporarily processed on the backend and then deleted.
 
 ## Run locally
 
@@ -34,4 +40,4 @@ npm.cmd run build
 
 The production files are written to `dist/`. Production hosting must forward `/api` to FastAPI or build with `VITE_API_BASE_URL` set to the backend origin; the Vite dev proxy is only for local development. This task does not deploy the site.
 
-API shapes are defined in [API_CONTRACT.md](../API_CONTRACT.md). There is one demo knowledge base and no mode toggle. A loading notice appears while searching; errors are shown without losing the question so it can be retried. Generated answers are displayed in the original answer card; the rest of the original content remains intact.
+API shapes are defined in [API_CONTRACT.md](../API_CONTRACT.md). There is one demo knowledge base. Missing information returns the canonical no-information message and opens feedback; failed requests preserve the question for retry. Generated answers appear in the original answer card and contributors are resolved through the expert directory. Captured interviews remain synthetic demonstration records.

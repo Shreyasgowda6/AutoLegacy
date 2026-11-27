@@ -29,6 +29,8 @@ coverage/
 chroma_db/
 backend/data/knowledge.json
 backend/data/embeddings.json
+backend/data/feedback.json
+backend/.models/
 backend/uploads/
 backend/recordings/
 
