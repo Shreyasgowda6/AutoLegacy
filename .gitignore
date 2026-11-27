@@ -28,6 +28,7 @@ coverage/
 # Local knowledge storage and vector database
 chroma_db/
 backend/data/knowledge.json
+backend/data/embeddings.json
 backend/uploads/
 backend/recordings/
 
