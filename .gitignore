@@ -28,6 +28,8 @@ coverage/
 # Local knowledge storage and vector database
 chroma_db/
 backend/data/knowledge.json
+backend/uploads/
+backend/recordings/
 
 # Editor, OS, and log files
 .idea/

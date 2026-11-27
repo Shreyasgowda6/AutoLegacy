@@ -10,7 +10,7 @@ Preserve practical knowledge from experienced automobile mechanics and make appr
 - `frontend/`: React and Vite frontend.
 - `API_CONTRACT.md`: shared API specification, to be added during backend implementation.
 
-The application has not been implemented yet.
+The FastAPI backend is implemented in `backend/`. See [backend setup and workflow](backend/README.md) and [the shared API contract](API_CONTRACT.md). The frontend is developed separately.
 
 ## Collaboration
 
