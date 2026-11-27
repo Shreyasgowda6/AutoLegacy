@@ -156,3 +156,16 @@ def test_missing_model_error_is_actionable(monkeypatch):
     monkeypatch.setattr(httpx.Client, 'post', fail)
     with pytest.raises(OllamaError, match='Model not installed'):
         Ollama(Settings()).embed('text')
+
+
+def test_active_knowledge_preserves_new_github_records():
+    from app.config import ROOT
+    source = json.loads((ROOT / 'data/demo_knowledge.json').read_text(encoding='utf-8'))
+    active = RAG(Settings(knowledge_path=ROOT / 'data/knowledge_base.json'), FakeOllama()).records()
+    assert len(active) == len(source) == 10
+    original = {row['id']: row for row in source}
+    for record in active:
+        assert record.problem == original[record.id]['problem']
+        assert record.vehicle_make == original[record.id]['vehicle_make']
+        assert record.original_transcript == original[record.id]['original_transcript']
+        assert record.confirmed_cause == original[record.id]['confirmed_cause']

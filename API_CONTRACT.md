@@ -24,6 +24,8 @@ Response **200**:
 
 When relevant evidence exists, `answer` summarizes the retrieved records and `sources` contains the cited JSON records plus numeric cosine `distance` (lower is closer). Each source includes `id`, `problem`, `symptoms`, `operating_conditions`, `possible_causes`, `diagnostic_steps`, `confirmed_cause`, `solution`, `expert_insight`, `common_mistakes`, `safety_precautions` and `source_type: "synthetic"`. Answers cite `[record-id]`. All records are demonstration examples.
 
+Records can also include nullable `expert_name`, `experience_years`, `domain`, `category`, `vehicle_make`, `vehicle_model`, `engine_type` and `original_transcript`. These details are preserved for retrieval and answer generation.
+
 The embedding cache is created automatically on the first question and rebuilt when the JSON or embedding model changes. No approval or seed endpoint is required.
 
 PowerShell:
