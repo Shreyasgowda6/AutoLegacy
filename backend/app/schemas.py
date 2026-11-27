@@ -12,6 +12,14 @@ class Model(BaseModel):
 class Knowledge(Model):
     id: Text
     problem: Text
+    expert_name: str | None = None
+    experience_years: int | None = Field(default=None, ge=0)
+    domain: str | None = None
+    category: str | None = None
+    vehicle_make: str | None = None
+    vehicle_model: str | None = None
+    engine_type: str | None = None
+    original_transcript: str | None = None
     symptoms: list[str] = Field(default_factory=list)
     operating_conditions: list[str] = Field(default_factory=list)
     possible_causes: list[str] = Field(default_factory=list)

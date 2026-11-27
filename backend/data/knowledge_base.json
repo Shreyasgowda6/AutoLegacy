@@ -1,272 +1,461 @@
 [
   {
-    "id": "demo-cold-start-knock",
-    "problem": "Engine knocking during cold start",
+    "id": "54c5968e-9ad3-58f8-bb3e-5444b2605fee",
+    "problem": "Engine knocking/rattling during cold start",
+    "expert_name": "Synthetic Demo Mechanic 01 (synthetic)",
+    "experience_years": 32,
+    "domain": "Automotive",
+    "category": "Engine mechanical",
+    "vehicle_make": "Volkswagen",
+    "vehicle_model": "Golf (approx. 2010-2012)",
+    "engine_type": "1.4 TSI petrol",
+    "original_transcript": "Expert: I'm looking at a Volkswagen Golf with the 1.4 TSI petrol engine, around 2010 to 2012. The customer says that when he starts the car in the morning there is a rattling, knocking noise for two or three seconds, and then it goes away. It only happens on a cold start, mostly after the car stood overnight. Warm restarts are always quiet. Many people ignore this because it disappears. I never ignore it. On this engine the usual suspects are the timing chain and the chain tensioner, but low oil level or the wrong oil grade can sound similar. My rule is: a noise that vanishes within seconds points to something that depends on oil pressure, not to a worn bearing.\n\nInterviewer: How do you narrow down where the noise is coming from?\n\nExpert: First I check the oil level and which oil is in the engine, because that costs nothing. Then I use a mechanic's stethoscope on the timing cover during a cold start. If the rattle is loudest there, I connect the scan tool and look at the camshaft timing deviation values. If the chain has stretched, the deviation is bigger than it should be, and sometimes there is a stored timing correlation fault.\n\nInterviewer: What did you confirm in this case, and how did you fix it?\n\nExpert: The oil was fine, the noise was loudest at the timing cover, and the timing deviation was out of tolerance. So the confirmed cause was a stretched timing chain with a tensioner that did not hold pressure after standing overnight. I replaced the complete chain kit: chain, tensioner and guide rails, together with fresh oil and a new filter.\n\nInterviewer: What mistakes do you see other mechanics make, and what safety points matter?\n\nExpert: The big mistake is replacing only the tensioner and leaving the old stretched chain. The noise comes back within weeks. Another mistake is telling the customer it is normal. For safety: if the chain jumps a tooth, the valves can hit the pistons and the engine is destroyed. If the rattle lasts longer than a few seconds, or a timing fault appears, the car should not be driven until it is inspected.",
     "symptoms": [
-      "Brief knocking or rattling after a cold start"
+      "Rattling or knocking noise for 2-3 seconds after start",
+      "Noise disappears once oil pressure builds up"
     ],
     "operating_conditions": [
-      "First start after an overnight stop"
+      "Cold start",
+      "After standing overnight",
+      "Warm restarts are quiet"
     ],
     "possible_causes": [
-      "Delayed oil circulation",
-      "Timing component wear"
+      "Stretched timing chain",
+      "Timing chain tensioner not holding oil pressure",
+      "Low oil level",
+      "Wrong oil grade"
     ],
     "diagnostic_steps": [
-      "Document how long the noise lasts and arrange professional diagnosis"
+      "Check oil level and oil grade",
+      "Listen at the timing cover with a mechanic's stethoscope during cold start",
+      "Read camshaft timing deviation values and stored timing faults with the scan tool"
     ],
-    "expert_insight": "Synthetic example: the duration and temperature dependence of a noise provide useful diagnostic context.",
+    "confirmed_cause": "Stretched timing chain with a tensioner that did not hold pressure after standing",
+    "solution": "Replace the complete timing chain kit (chain, tensioner, guide rails) and change oil and filter",
+    "expert_insight": "A noise that vanishes within seconds points to an oil-pressure-dependent part (e.g. chain tensioner), not to a worn bearing.",
     "common_mistakes": [
-      "Treating all cold-start noises as the same fault"
+      "Replacing only the tensioner and leaving the stretched chain",
+      "Telling the customer the noise is normal because it goes away"
     ],
     "safety_precautions": [
-      "Stop the engine if oil-pressure warnings persist; seek qualified inspection"
+      "A jumped timing chain can cause valve-to-piston contact and destroy the engine",
+      "Do not drive if the rattle lasts longer than a few seconds or timing faults appear"
     ],
     "source_type": "synthetic"
   },
   {
-    "id": "demo-overheating",
-    "problem": "Engine overheating",
+    "id": "c55bbb24-e958-515c-afc3-6d7e029ea6be",
+    "problem": "Engine overheating in slow traffic",
+    "expert_name": "Synthetic Demo Mechanic 02 (synthetic)",
+    "experience_years": 28,
+    "domain": "Automotive",
+    "category": "Cooling system",
+    "vehicle_make": "Toyota",
+    "vehicle_model": "Corolla (approx. 2008-2010)",
+    "engine_type": "1.8 petrol",
+    "original_transcript": "Expert: This is a Toyota Corolla with the 1.8 petrol engine, about fifteen years old. The complaint is that the temperature gauge climbs when the car sits in traffic or at a red light, but on the motorway it stays normal. Sometimes the customer also smells hot coolant after parking. The coolant level looks okay. Possible causes are a cooling fan that does not switch on, a thermostat that sticks, a blocked radiator, a weak water pump, or in the worst case a head gasket. Because it only happens when the car is slow, I immediately think of airflow, so the fan is my first suspect, not the thermostat.\n\nInterviewer: How do you narrow down the cause of the overheating?\n\nExpert: With the engine cold I check the coolant level and look for leaks. Then I run the engine in the workshop with the air conditioning on, because the fan should start. I check the fan fuse and relay, and I feed the fan motor directly with twelve volts to see whether the motor itself works. I squeeze the radiator hoses to check pressure, and if I suspect the head gasket I do a combustion gas test on the coolant.\n\nInterviewer: What did you confirm and how did you fix it?\n\nExpert: The fuse and relay were fine. When I powered the fan directly it turned very slowly and made a grinding sound. So the confirmed cause was a worn-out fan motor. I replaced the fan assembly, bled the cooling system, and then did a test drive and an idle test with the air conditioning on.\n\nInterviewer: What are the common mistakes and safety points?\n\nExpert: Mistake number one is replacing the thermostat just because the car overheats. Number two is topping up with plain water for months. For safety: never open the radiator or expansion tank cap on a hot engine, because the coolant is under pressure and can cause severe burns. And if the gauge goes into the red, stop and switch off, because driving on can warp the cylinder head.",
     "symptoms": [
-      "High temperature warning"
+      "Temperature gauge climbs in traffic or at idle",
+      "Smell of hot coolant after parking"
     ],
     "operating_conditions": [
-      "Temperature rises in slow traffic"
+      "Stationary or slow traffic",
+      "Normal temperature at motorway speed",
+      "Coolant level appears normal"
     ],
     "possible_causes": [
-      "Coolant loss",
-      "Cooling fan fault",
-      "Thermostat fault"
+      "Cooling fan not switching on",
+      "Failed fan motor",
+      "Stuck thermostat",
+      "Blocked radiator",
+      "Weak water pump",
+      "Head gasket failure"
     ],
     "diagnostic_steps": [
-      "Record driving conditions and warning indications for a qualified mechanic"
+      "Check coolant level and look for leaks with engine cold",
+      "Run engine with air conditioning on and watch whether the fan starts",
+      "Check fan fuse and relay",
+      "Power the fan motor directly with 12 V",
+      "Squeeze radiator hoses to check pressure",
+      "Combustion gas test on the coolant if head gasket is suspected"
     ],
-    "expert_insight": "Synthetic example: compare when the temperature rises, rather than assuming one component is responsible.",
+    "confirmed_cause": "Worn-out cooling fan motor (ran slowly and ground when powered directly)",
+    "solution": "Replace the fan assembly, bleed the cooling system, verify with test drive and idle test with air conditioning on",
+    "expert_insight": "Overheating only in slow traffic but not at speed means an airflow problem, so check the fan before the thermostat.",
     "common_mistakes": [
-      "Continuing to drive with a temperature warning"
+      "Replacing the thermostat first",
+      "Topping up with plain water for months"
     ],
     "safety_precautions": [
-      "Stop safely and switch off the engine when overheating",
-      "Never open a hot cooling system"
+      "Never open the radiator or expansion tank cap on a hot engine",
+      "If the gauge reaches red, stop and switch off the engine to avoid cylinder head damage"
     ],
     "source_type": "synthetic"
   },
   {
-    "id": "demo-rough-idle",
-    "problem": "Rough engine idling",
+    "id": "989ebe4a-f07e-5e84-bdcd-01132f280d01",
+    "problem": "Rough and unstable engine idle",
+    "expert_name": "Synthetic Demo Mechanic 03 (synthetic)",
+    "experience_years": 25,
+    "domain": "Automotive",
+    "category": "Ignition and intake",
+    "vehicle_make": "Ford",
+    "vehicle_model": "Focus (approx. 2011-2013)",
+    "engine_type": "1.6 petrol",
+    "original_transcript": "Expert: Ford Focus with the 1.6 petrol engine. The customer says the idle is rough and sometimes the revs go up and down by themselves, especially when the engine is warm. There is no big power loss when driving. The check engine light is on occasionally. Possible causes are worn spark plugs, a failing ignition coil, a vacuum leak, a dirty throttle body, or a leaking injector. A good question is: does the idle smooth out when you raise the revs a little? If yes, I suspect a vacuum or air leak rather than the ignition.\n\nInterviewer: How do you narrow down the cause?\n\nExpert: I read the fault codes first. Here there was a lean mixture code and no misfire code on a specific cylinder, which already points away from a single bad coil. I check short and long term fuel trims with the scan tool: high positive trim at idle that drops at 2500 rpm suggests a vacuum leak. Then I do a smoke test on the intake system.\n\nInterviewer: What did you confirm and how did you fix it?\n\nExpert: The smoke came out of a cracked crankcase ventilation hose near the intake manifold. That was the confirmed cause: unmetered air was getting in. I replaced the hose and cleared the codes. Afterwards the fuel trims were back near zero and the idle was steady.\n\nInterviewer: What are the common mistakes and safety points?\n\nExpert: People replace all the spark plugs and coils straight away, which is expensive and does not fix a vacuum leak. Also, do not spray flammable cleaner around a hot exhaust manifold, use smoke instead. For safety, keep hands and clothing away from belts and the hot engine while it is running for tests.",
     "symptoms": [
-      "Uneven idle speed",
-      "Shaking at idle"
+      "Rough idle",
+      "Revs hunting up and down",
+      "Occasional check engine light"
     ],
     "operating_conditions": [
-      "Vehicle stationary with engine running"
+      "Mostly with warm engine",
+      "Idle smooths out when revs are raised slightly",
+      "No major power loss while driving"
     ],
     "possible_causes": [
-      "Intake air leak",
-      "Ignition fault",
-      "Fuel delivery issue"
+      "Vacuum or intake air leak",
+      "Worn spark plugs",
+      "Failing ignition coil",
+      "Dirty throttle body",
+      "Leaking injector"
     ],
     "diagnostic_steps": [
-      "Record whether symptoms change between cold and warm operation",
-      "Have diagnostic fault codes assessed by a qualified mechanic"
+      "Read fault codes (lean mixture code, no cylinder-specific misfire)",
+      "Check short and long term fuel trims at idle and at 2500 rpm",
+      "Smoke test the intake and vacuum system"
     ],
-    "expert_insight": "Synthetic example: stored codes are clues and do not alone confirm a failed component.",
+    "confirmed_cause": "Cracked crankcase ventilation hose near the intake manifold causing a vacuum leak",
+    "solution": "Replace the cracked hose, clear codes, verify fuel trims return near zero and idle is stable",
+    "expert_insight": "If the idle smooths out when revs are raised, suspect a vacuum or air leak before ignition parts.",
     "common_mistakes": [
-      "Replacing components solely from a fault-code description"
+      "Replacing all spark plugs and coils without diagnosis",
+      "Spraying flammable cleaner near a hot exhaust manifold instead of using smoke"
     ],
     "safety_precautions": [
-      "Do not run the engine in an enclosed space",
-      "Seek inspection for a flashing engine warning light"
+      "Keep hands and clothing away from belts and hot parts during running tests",
+      "Avoid flammable sprays near hot exhaust components"
     ],
     "source_type": "synthetic"
   },
   {
-    "id": "demo-intermittent-start",
-    "problem": "Intermittent starting problems",
+    "id": "0db8d0f2-892a-5b04-878e-7be1c67d303c",
+    "problem": "Intermittent crank-no-start when engine is hot",
+    "expert_name": "Synthetic Demo Mechanic 04 (synthetic)",
+    "experience_years": 30,
+    "domain": "Automotive",
+    "category": "Starting and electrical",
+    "vehicle_make": "Opel",
+    "vehicle_model": "Astra (approx. 2009-2011)",
+    "engine_type": "1.6 petrol",
+    "original_transcript": "Expert: Opel Astra with the 1.6 petrol engine. The customer says sometimes it starts perfectly and sometimes the engine cranks normally but does not start. It happens mostly after a drive when the engine is hot, for example after refuelling. If he waits twenty or thirty minutes, it starts again. The battery is fairly new. Possible causes are a failing crankshaft position sensor, a weak fuel pump or relay, an immobiliser problem, or a failing ignition module. The pattern, failing when hot and fine after cooling, tells me it is a heat sensitive electronic part.\n\nInterviewer: How do you diagnose a problem that only happens sometimes?\n\nExpert: I need the car to fail while I am testing, so I drive it until it is hot. When it fails I check three things quickly: spark, fuel pressure, and the engine speed signal on the scan tool while cranking. If the scan tool shows zero rpm while the starter is turning the engine, the control unit is not receiving a crankshaft signal.\n\nInterviewer: What did you confirm and how did you fix it?\n\nExpert: That is exactly what happened. Spark was missing, fuel pressure was fine, and the rpm reading stayed at zero when hot. After the engine cooled, the signal came back. So the confirmed cause was a crankshaft position sensor that fails when heat soaked. I replaced the sensor and checked the connector for oil and damaged pins.\n\nInterviewer: What are the common mistakes and safety points?\n\nExpert: A typical mistake is replacing the fuel pump because it is the most common part, or guessing with the battery. For safety, this sensor can also fail while driving and the engine can stall in traffic, so I tell customers not to wait for it to get worse. Disconnect the battery before touching connectors near the engine.",
     "symptoms": [
-      "Engine sometimes fails to start"
+      "Engine cranks normally but does not start",
+      "Starts normally after cooling down"
     ],
     "operating_conditions": [
-      "Intermittent, with no confirmed pattern"
+      "Mostly when engine is hot",
+      "After refuelling or a drive",
+      "Recovers after 20-30 minutes"
     ],
     "possible_causes": [
-      "Battery or electrical connection issue",
-      "Starter circuit issue",
-      "Fuel or ignition fault"
+      "Failing crankshaft position sensor",
+      "Weak fuel pump or relay",
+      "Immobiliser fault",
+      "Failing ignition module"
     ],
     "diagnostic_steps": [
-      "Record whether the engine cranks during a failed start",
-      "Note dashboard indications and arrange inspection"
+      "Reproduce the fault by driving until hot",
+      "When it fails, check spark",
+      "Check fuel pressure",
+      "Read engine speed signal on scan tool while cranking"
     ],
-    "expert_insight": "Synthetic example: distinguishing no-crank from crank-but-no-start narrows the investigation.",
+    "confirmed_cause": "Crankshaft position sensor failing when heat soaked (scan tool showed 0 rpm while cranking, no spark)",
+    "solution": "Replace the crankshaft position sensor and inspect connector for oil and damaged pins",
+    "expert_insight": "A fault that appears when hot and disappears after cooling indicates a heat-sensitive electronic component.",
     "common_mistakes": [
-      "Using the phrase will not start without recording whether the engine cranks"
+      "Replacing the fuel pump first",
+      "Guessing with the battery"
     ],
     "safety_precautions": [
-      "Do not bypass starter circuits or safety interlocks"
+      "The sensor can fail while driving and cause stalling in traffic",
+      "Disconnect the battery before working on connectors near the engine"
     ],
     "source_type": "synthetic"
   },
   {
-    "id": "demo-engine-vibration",
-    "problem": "Engine vibration",
+    "id": "3034067f-bf0e-5002-935e-0c4a0f5a6e01",
+    "problem": "Engine vibration at idle when in gear",
+    "expert_name": "Synthetic Demo Mechanic 05 (synthetic)",
+    "experience_years": 35,
+    "domain": "Automotive",
+    "category": "Engine mounts and vibration",
+    "vehicle_make": "Renault",
+    "vehicle_model": "Clio (approx. 2010-2012)",
+    "engine_type": "1.5 dCi diesel",
+    "original_transcript": "Expert: Renault Clio with the 1.5 diesel engine. The customer complains about a vibration in the steering wheel and the seat when the car is stopped at a traffic light, in gear with the clutch pressed. It is worse with the air conditioning on and almost gone when he puts it in neutral. Possible causes are a collapsed engine mount, a misfiring injector, a worn dual mass flywheel, or an unbalanced wheel, although wheels only matter when driving. The fact that it changes between neutral and gear makes me suspect the engine mounts.\n\nInterviewer: How do you separate the possible causes?\n\nExpert: First I separate idle vibration from driving vibration. If it only happens at idle, tyre balance is not the issue. I watch the engine while someone raises the revs and shifts between neutral and drive: the engine should move a little but not jump. I check each mount for cracks and fluid leaks, and I use a pry bar to look for excess movement. I also check injector balance values on the scan tool to rule out an uneven cylinder.\n\nInterviewer: What did you confirm and how did you fix it?\n\nExpert: The injector values were fine. The right hand hydraulic engine mount had collapsed, it was leaking fluid and the engine sat lower than normal. That was the confirmed cause. I replaced the mount and also checked the other mounts and the bolt torque.\n\nInterviewer: What are the common mistakes and safety points?\n\nExpert: A mistake I see is balancing the wheels or changing injectors without watching how the engine moves. For safety, a broken mount lets the engine shift and stretches hoses, wiring and the exhaust. Support the engine properly with a jack and a wooden block when replacing a mount, and never let it hang from the other mounts.",
     "symptoms": [
-      "Vibration felt through the vehicle body"
+      "Vibration in steering wheel and seat at standstill in gear",
+      "Vibration worse with air conditioning on",
+      "Almost gone in neutral"
     ],
     "operating_conditions": [
-      "Vibration changes with engine speed"
+      "Stopped in gear with clutch pressed",
+      "Idle with air conditioning load"
     ],
     "possible_causes": [
-      "Uneven combustion",
-      "Worn engine mount",
-      "Accessory drive fault"
+      "Collapsed or leaking engine mount",
+      "Uneven injector or misfire",
+      "Worn dual mass flywheel",
+      "Unbalanced wheels (only while driving)"
     ],
     "diagnostic_steps": [
-      "Document the engine speed and operating conditions where vibration occurs"
+      "Separate idle vibration from driving vibration",
+      "Watch engine movement while raising revs and shifting between neutral and drive",
+      "Inspect mounts for cracks and fluid leaks and check movement with a pry bar",
+      "Check injector balance values with the scan tool"
     ],
-    "expert_insight": "Synthetic example: record whether vibration follows engine speed or vehicle road speed.",
+    "confirmed_cause": "Collapsed right-hand hydraulic engine mount leaking fluid",
+    "solution": "Replace the engine mount, check the other mounts and bolt torque",
+    "expert_insight": "Vibration that changes between neutral and gear at standstill points to engine mounts rather than wheels.",
     "common_mistakes": [
-      "Assuming every vibration is caused by an engine mount"
+      "Balancing wheels for an idle-only vibration",
+      "Changing injectors without observing engine movement"
     ],
     "safety_precautions": [
-      "Keep clear of moving belts and fans",
-      "Have severe or new vibration professionally inspected"
+      "Support the engine with a jack and wooden block when replacing a mount",
+      "A broken mount can stretch hoses, wiring and the exhaust"
     ],
     "source_type": "synthetic"
   },
   {
-    "id": "demo-fuel-consumption",
-    "problem": "Excessive fuel consumption",
+    "id": "082d9342-1272-53ad-9c1e-bcebd7a662ec",
+    "problem": "Excessive fuel consumption on short trips",
+    "expert_name": "Synthetic Demo Mechanic 06 (synthetic)",
+    "experience_years": 27,
+    "domain": "Automotive",
+    "category": "Fuel efficiency",
+    "vehicle_make": "Hyundai",
+    "vehicle_model": "i30 (approx. 2012-2014)",
+    "engine_type": "1.6 petrol",
+    "original_transcript": "Expert: Hyundai i30 with the 1.6 petrol engine. The owner says consumption went up by about twenty percent over the winter, from around seven litres per hundred kilometres to eight and a half, mainly on short trips. No warning lights. He also mentions that the heater takes a long time to get warm. Possible causes are a thermostat stuck open, low tyre pressure, a clogged air filter, a faulty lambda sensor, dragging brakes or leaking injectors. The slow heater is the clue that many people overlook.\n\nInterviewer: How do you find the cause of higher consumption?\n\nExpert: I start with the cheap checks: tyre pressure, air filter, and whether the wheels spin freely. Then I watch the coolant temperature on the scan tool during a ten minute drive. A healthy engine reaches around ninety degrees in five to ten minutes. If it stays around sixty to seventy, the control unit keeps adding fuel as if the engine was still cold. After that I look at lambda sensor readings and fuel trims.\n\nInterviewer: What did you confirm and how did you fix it?\n\nExpert: The coolant temperature never went above about sixty-eight degrees, even on a long drive. The confirmed cause was a thermostat stuck in the open position. After replacing the thermostat and bleeding the cooling system, the engine reached normal temperature and the consumption returned to normal over the next tank.\n\nInterviewer: What are the common mistakes and safety points?\n\nExpert: The typical mistake is replacing the lambda sensor or injectors because a forum said so. Check the temperature first. For safety, I also check for dragging brakes, which can overheat and fail. And never open the cooling system when it is hot.",
     "symptoms": [
-      "Measured fuel consumption has increased"
+      "Fuel consumption up about 20% (approx. 7 to 8.5 l/100 km)",
+      "Heater slow to warm up",
+      "No warning lights"
     ],
     "operating_conditions": [
-      "Compared with a previous baseline"
+      "Mostly short trips",
+      "Noticed during winter"
     ],
     "possible_causes": [
-      "Changed driving conditions",
-      "Engine management fault",
-      "Mechanical resistance"
+      "Thermostat stuck open",
+      "Low tyre pressure",
+      "Clogged air filter",
+      "Faulty lambda sensor",
+      "Dragging brakes",
+      "Leaking injectors"
     ],
     "diagnostic_steps": [
-      "Compare actual fuel used and distance travelled under similar conditions",
-      "Record warning lights for professional assessment"
+      "Check tyre pressure and air filter",
+      "Check that wheels spin freely (dragging brakes)",
+      "Monitor coolant temperature on scan tool during a 10-minute drive",
+      "Check lambda sensor readings and fuel trims"
     ],
-    "expert_insight": "Synthetic example: a consistent measurement baseline helps distinguish a fault from changes in use.",
+    "confirmed_cause": "Thermostat stuck open; coolant never exceeded about 68 degrees C",
+    "solution": "Replace the thermostat and bleed the cooling system; consumption normalised over the next tank",
+    "expert_insight": "If the engine never reaches operating temperature, the control unit keeps enriching the mixture; a slow heater is the clue.",
     "common_mistakes": [
-      "Diagnosing excessive consumption only from the dashboard range estimate"
+      "Replacing the lambda sensor or injectors before checking coolant temperature"
     ],
     "safety_precautions": [
-      "Stop safely and seek assistance if fuel is leaking or a strong fuel smell occurs"
+      "Check for dragging brakes which can overheat",
+      "Never open the cooling system when hot"
     ],
     "source_type": "synthetic"
   },
   {
-    "id": "demo-power-loss",
-    "problem": "Loss of engine power",
+    "id": "94bf0604-8754-5088-9a38-46f21adec837",
+    "problem": "Sudden loss of power under load (limp mode)",
+    "expert_name": "Synthetic Demo Mechanic 07 (synthetic)",
+    "experience_years": 29,
+    "domain": "Automotive",
+    "category": "Turbo and boost",
+    "vehicle_make": "Peugeot",
+    "vehicle_model": "308 (approx. 2009-2011)",
+    "engine_type": "1.6 HDi diesel",
+    "original_transcript": "Expert: Peugeot 308 with the 1.6 HDi diesel engine. The driver reports that the car suddenly lost power while accelerating, it feels like limp mode, and there is a hissing or whistling noise and a bit of black smoke. It happens mostly under load, when overtaking or climbing hills. Possible causes are a boost leak from a split hose, a stuck turbo vane actuator, a clogged particulate filter, a dirty mass airflow sensor or a clogged fuel filter. Hissing under load together with black smoke makes me suspect a boost leak first.\n\nInterviewer: How do you diagnose a loss of power?\n\nExpert: I read the fault codes. Here there was an underboost code. I look at boost pressure on the scan tool during a road test, target versus actual. Then I inspect all the pipes from the turbo to the intercooler and to the intake, looking for oil wetness at joints and splits. A boost leak test with air pressure helps. If boost is fine, I check the particulate filter differential pressure and the fuel filter.\n\nInterviewer: What did you confirm and how did you fix it?\n\nExpert: I found a split in the intercooler hose with oil spray around it. That was the confirmed cause. I replaced the hose and the clamps, cleared the codes, and the boost matched the target on the road test. The turbo itself was fine.\n\nInterviewer: What are the common mistakes and safety points?\n\nExpert: The expensive mistake is condemning the turbo without testing the pipes. Another one is clearing the codes and sending the customer home. For safety, limp mode while overtaking or joining a motorway is dangerous, so I tell customers not to drive on fast roads until it is repaired. Also, the turbo and pipes are hot, so let them cool before touching.",
     "symptoms": [
-      "Reduced acceleration"
+      "Sudden loss of power (limp mode)",
+      "Hissing or whistling noise",
+      "Some black smoke",
+      "Underboost fault code"
     ],
     "operating_conditions": [
-      "Noticeable under load"
+      "Under load, overtaking or climbing hills"
     ],
     "possible_causes": [
-      "Engine protection mode",
-      "Air or fuel delivery issue",
-      "Exhaust restriction"
+      "Boost leak from a split hose",
+      "Stuck turbo vane actuator",
+      "Clogged particulate filter",
+      "Dirty mass airflow sensor",
+      "Clogged fuel filter"
     ],
     "diagnostic_steps": [
-      "Record warning lights, engine temperature and when power is lost",
-      "Arrange qualified diagnostic inspection"
+      "Read fault codes",
+      "Compare target and actual boost pressure on a road test",
+      "Inspect turbo-to-intercooler and intake pipes for oil wetness and splits",
+      "Pressure test the boost system",
+      "If boost is fine, check particulate filter differential pressure and fuel filter"
     ],
-    "expert_insight": "Synthetic example: describe load and temperature conditions before clearing fault information.",
+    "confirmed_cause": "Split intercooler hose causing a boost leak",
+    "solution": "Replace the intercooler hose and clamps, clear codes, verify boost against target on road test",
+    "expert_insight": "Hissing under load plus black smoke suggests a boost leak; test the pipes before condemning the turbo.",
     "common_mistakes": [
-      "Clearing diagnostic codes before recording them"
+      "Condemning the turbo without testing the pipes",
+      "Clearing codes and returning the car without finding the cause"
     ],
     "safety_precautions": [
-      "Avoid driving if loss of power makes traffic manoeuvres unsafe"
+      "Limp mode while overtaking or joining fast roads is dangerous; avoid fast roads until repaired",
+      "Let the turbo and pipes cool before touching"
     ],
     "source_type": "synthetic"
   },
   {
-    "id": "demo-oil-leak",
-    "problem": "Oil leakage",
+    "id": "eb32fb55-bb91-5197-8d9c-ee989f1c0bfe",
+    "problem": "Engine oil leak and oil loss",
+    "expert_name": "Synthetic Demo Mechanic 08 (synthetic)",
+    "experience_years": 33,
+    "domain": "Automotive",
+    "category": "Leaks and seals",
+    "vehicle_make": "Audi",
+    "vehicle_model": "A4 (approx. 2010-2012)",
+    "engine_type": "2.0 TFSI petrol",
+    "original_transcript": "Expert: Audi A4 with the 2.0 TFSI petrol engine. The customer finds oil spots on the driveway and has to top up the oil about every two thousand kilometres. Sometimes there is a burning oil smell after a long drive. Possible sources are the valve cover gasket, the oil filter housing seal, the oil pan gasket, the rear main seal, or an oil pressure switch. The most important rule is that oil always runs downward, so the real source is always higher than the wettest spot.\n\nInterviewer: How do you find the real source of an oil leak?\n\nExpert: I clean the engine with degreaser so I am not looking at old oil. Then I add UV dye if needed, drive for a day or two, and inspect with a UV lamp. I trace the oil trail upward to where it starts, checking from above and from below. I also check that the crankcase ventilation is not blocked, because high crankcase pressure can push oil out of good seals.\n\nInterviewer: What did you confirm and how did you fix it?\n\nExpert: The trail started at the valve cover gasket at the rear of the cylinder head and ran down the back of the engine to the bellhousing area. So the confirmed cause was a hardened valve cover gasket. I replaced the gasket and the crankcase ventilation valve and cleaned everything. A week later there was no new oil.\n\nInterviewer: What are the common mistakes and safety points?\n\nExpert: The classic error is blaming the rear main seal because the bellhousing is wet. It is the most expensive repair and often wrong. For safety, oil dripping onto a hot exhaust can cause a fire, and a low oil level can destroy the engine, so I tell customers to check the dipstick regularly until it is repaired.",
     "symptoms": [
-      "Oil spots beneath the vehicle"
+      "Oil spots on the ground",
+      "Oil level needs topping up about every 2,000 km",
+      "Burning oil smell after long drives"
     ],
     "operating_conditions": [
-      "Observed after parking"
+      "Noticeable after long drives"
     ],
     "possible_causes": [
-      "Gasket leak",
-      "Seal leak",
-      "Oil service connection leak"
+      "Valve cover gasket",
+      "Oil filter housing seal",
+      "Oil pan gasket",
+      "Rear main seal",
+      "Oil pressure switch",
+      "Blocked crankcase ventilation raising pressure"
     ],
     "diagnostic_steps": [
-      "Record the position and appearance of the leak without going beneath an unsupported vehicle",
-      "Have the leak origin inspected"
+      "Clean the engine with degreaser",
+      "Add UV dye and drive for a day or two",
+      "Inspect with a UV lamp from above and below",
+      "Trace the oil trail upward to its highest point",
+      "Check crankcase ventilation is not blocked"
     ],
-    "expert_insight": "Synthetic example: airflow and gravity can move oil away from the original leak point.",
+    "confirmed_cause": "Hardened valve cover gasket at the rear of the cylinder head; oil ran down to the bellhousing area",
+    "solution": "Replace the valve cover gasket and crankcase ventilation valve and clean the area; recheck after a week",
+    "expert_insight": "Oil runs downward, so the true leak source is always above the wettest spot.",
     "common_mistakes": [
-      "Assuming the lowest visible oil spot is the origin of the leak"
+      "Blaming the rear main seal because the bellhousing is wet"
     ],
     "safety_precautions": [
-      "Do not drive with an oil pressure warning",
-      "Never work under a vehicle supported only by a jack"
+      "Oil on a hot exhaust can cause a fire",
+      "Low oil level can destroy the engine; check the dipstick regularly until repaired"
     ],
     "source_type": "synthetic"
   },
   {
-    "id": "demo-exhaust-smoke",
-    "problem": "Unusual exhaust smoke",
+    "id": "0238b397-5e15-5013-9fd4-30f7cb32b846",
+    "problem": "Blue smoke from exhaust at start-up",
+    "expert_name": "Synthetic Demo Mechanic 09 (synthetic)",
+    "experience_years": 26,
+    "domain": "Automotive",
+    "category": "Exhaust and emissions",
+    "vehicle_make": "Ford",
+    "vehicle_model": "Fiesta (approx. 2009-2012)",
+    "engine_type": "1.25 petrol",
+    "original_transcript": "Expert: Ford Fiesta with the 1.25 petrol engine. The customer says there is a puff of blue grey smoke when starting the car in the morning or after it has stood for a few hours, and then it clears. While driving there is no smoke. The oil level drops slowly. Smoke colour tells a lot: blue means burning oil, white smoke that does not go away means coolant, and black means too much fuel. Blue smoke only at start-up usually points to valve stem seals, while blue smoke under acceleration points to worn piston rings.\n\nInterviewer: How do you find the cause of the smoke?\n\nExpert: I check when exactly the smoke appears. Start-up only is one story, under load is another. I do a compression test and a leak-down test to see whether the rings and valves are sealing. I check the crankcase ventilation, and I check the coolant level and look for white deposits under the oil cap to rule out coolant. I also measure the oil consumption over a set distance.\n\nInterviewer: What did you confirm and how did you fix it?\n\nExpert: Compression was good and even on all cylinders, so the rings were fine. Leak-down showed no major loss. With the smoke only at start-up, the confirmed cause was worn valve stem seals. I replaced the seals on all cylinders, holding the valves up with compressed air so they do not drop.\n\nInterviewer: What are the common mistakes and safety points?\n\nExpert: Many mechanics jump to an engine rebuild or recommend thick oil additives. That is usually unnecessary. For safety, burning oil can damage the catalytic converter over time, so do not ignore it. And when replacing valve seals, hold the valves up with an air-hold tool, otherwise they can fall into the cylinder.",
     "symptoms": [
-      "Persistent visible exhaust plume"
+      "Puff of blue-grey smoke at start-up",
+      "No smoke while driving",
+      "Slow drop in oil level"
     ],
     "operating_conditions": [
-      "Persists after engine warm-up"
+      "First start after standing for hours or overnight"
     ],
     "possible_causes": [
-      "Oil entering combustion",
-      "Coolant entering combustion",
-      "Fuel mixture issue"
+      "Worn valve stem seals",
+      "Worn piston rings",
+      "Blocked crankcase ventilation",
+      "Coolant ingress (white smoke)"
     ],
     "diagnostic_steps": [
-      "Record smoke colour, temperature conditions and duration for professional assessment"
+      "Note exactly when the smoke appears (start-up vs under load)",
+      "Compression test",
+      "Leak-down test",
+      "Check crankcase ventilation",
+      "Check coolant level and look for white deposits under the oil cap",
+      "Measure oil consumption over a set distance"
     ],
-    "expert_insight": "Synthetic example: smoke appearance alone is insufficient to confirm an internal engine fault.",
+    "confirmed_cause": "Worn valve stem seals (good, even compression; smoke only at start-up)",
+    "solution": "Replace valve stem seals on all cylinders, holding valves up with compressed air",
+    "expert_insight": "Blue smoke only at start-up points to valve stem seals; blue smoke under acceleration points to piston rings.",
     "common_mistakes": [
-      "Confusing brief cold-weather condensation with a confirmed coolant leak"
+      "Recommending an engine rebuild unnecessarily",
+      "Using thick oil additives as a fix"
     ],
     "safety_precautions": [
-      "Avoid inhaling exhaust",
-      "Seek qualified inspection for persistent smoke or fluid loss"
+      "Burning oil can damage the catalytic converter over time",
+      "Hold valves up with an air-hold tool during seal replacement so they do not fall into the cylinder"
     ],
     "source_type": "synthetic"
   },
   {
-    "id": "demo-engine-shutdown",
-    "problem": "Intermittent engine shutdown",
+    "id": "098d9321-5ba5-5fd7-b01e-55f32a840531",
+    "problem": "Engine randomly shuts off while driving",
+    "expert_name": "Synthetic Demo Mechanic 10 (synthetic)",
+    "experience_years": 31,
+    "domain": "Automotive",
+    "category": "Electrical",
+    "vehicle_make": "Volkswagen",
+    "vehicle_model": "Passat (approx. 2011-2013)",
+    "engine_type": "2.0 TDI diesel",
+    "original_transcript": "Expert: Volkswagen Passat with the 2.0 TDI diesel engine. The customer says the engine switches off by itself while driving, at random, sometimes after a bump, with no warning. It restarts immediately. It can happen once in a week. There are often no stored fault codes. Possible causes are a bad crankshaft sensor, a fuel supply problem, a failing main relay, or a loose or corroded ground or battery terminal. When there are no codes and the problem is random, I always suspect power and ground connections first.\n\nInterviewer: How do you diagnose a random shutdown with no codes?\n\nExpert: I do a wiggle test on connectors and harnesses while the engine is idling, and watch for a stumble. I check the battery terminals and the main ground strap between the engine and the body. A voltage drop test is the best method: with load on, the voltage drop across a ground cable should stay very low, roughly under 0.2 volts. I also check the fuel filter and the low pressure fuel supply.\n\nInterviewer: What did you confirm and how did you fix it?\n\nExpert: The ground strap from the engine to the chassis was corroded inside the insulation and loose at the terminal. The voltage drop was much too high with the load on. That was the confirmed cause. I replaced the ground strap, cleaned the contact surfaces and tightened the terminals. After a long test drive including bumps there was no shutdown.\n\nInterviewer: What are the common mistakes and safety points?\n\nExpert: The mistake is replacing parts one by one hoping to get lucky. For safety, when the engine stops while driving you lose power steering assistance and the brake booster works only for a few presses, so the driver must stay calm, brake firmly and steer to a safe place. I advise not driving the car until it is repaired. Disconnect the battery before touching ground cables.",
     "symptoms": [
-      "Engine unexpectedly stops"
+      "Engine switches off while driving without warning",
+      "Restarts immediately",
+      "Often no stored fault codes"
     ],
     "operating_conditions": [
-      "Intermittent during operation"
+      "Random, sometimes after a bump",
+      "About once a week"
     ],
     "possible_causes": [
-      "Electrical supply interruption",
-      "Engine position sensor issue",
-      "Fuel supply interruption"
+      "Corroded or loose ground strap",
+      "Loose battery terminal",
+      "Faulty crankshaft sensor",
+      "Fuel supply problem",
+      "Failing main relay"
     ],
     "diagnostic_steps": [
-      "Record temperature, dashboard indications and whether restarting is possible",
-      "Arrange qualified professional inspection"
+      "Wiggle test connectors and harnesses with the engine idling",
+      "Inspect battery terminals and engine-to-body ground strap",
+      "Voltage drop test across ground cables under load",
+      "Check fuel filter and low-pressure fuel supply"
     ],
-    "expert_insight": "Synthetic example: recording conditions at the moment of failure is valuable when a fault is intermittent.",
+    "confirmed_cause": "Corroded and loose engine-to-chassis ground strap causing excessive voltage drop",
+    "solution": "Replace the ground strap, clean contact surfaces, tighten terminals, test drive over bumps",
+    "expert_insight": "Random shutdowns with no fault codes should make you suspect power and ground connections first; use a voltage drop test.",
     "common_mistakes": [
-      "Assuming an intermittent fault is repaired because the engine restarts"
+      "Replacing parts one by one hoping to get lucky"
     ],
     "safety_precautions": [
-      "Unexpected shutdown can reduce steering and brake assistance; stop safely and seek recovery assistance"
+      "On engine stall the driver loses power steering assist and brake booster assistance after a few presses",
+      "Avoid driving the car until repaired",
+      "Disconnect the battery before working on ground cables"
     ],
     "source_type": "synthetic"
   }

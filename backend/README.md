@@ -72,6 +72,8 @@ The JSON file is authoritative. Changing it or the embedding model automatically
 
 Edit the JSON directly to replace or add examples. Each record needs unique `id` and nonempty `problem`; the other supported fields are shown in the bundled file. Keep records and retrieved context concise for the local model's 8192-token context window. Small models may produce imperfect summaries; this is a demonstration, not vehicle repair guidance.
 
+The active `knowledge_base.json` now contains the ten detailed records pulled from GitHub's `data/demo_knowledge.json`, including vehicle, expert and transcript fields. The imported file is retained unchanged as the original dataset; RAG reads only `knowledge_base.json`. Approval/status metadata from the earlier application is omitted from the active records. The embedding cache rebuilds automatically when these records change.
+
 `.env` controls paths, models, and the distance threshold. Paths are relative to `backend/`. Old `chroma_db/` and `data/knowledge.json` files, if present, are no longer used and have been left intact.
 
 ## Optional HTTP server
