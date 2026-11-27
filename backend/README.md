@@ -72,7 +72,7 @@ The JSON file is authoritative. Changing it or the embedding model automatically
 
 Edit the JSON directly to replace or add examples. Each record needs unique `id` and nonempty `problem`; the other supported fields are shown in the bundled file. Keep records and retrieved context concise for the local model's 8192-token context window. Small models may produce imperfect summaries; this is a demonstration, not vehicle repair guidance.
 
-The active `knowledge_base.json` now contains the ten detailed records pulled from GitHub's `data/demo_knowledge.json`, including vehicle, expert and transcript fields. The imported file is retained unchanged as the original dataset; RAG reads only `knowledge_base.json`. Approval/status metadata from the earlier application is omitted from the active records. The embedding cache rebuilds automatically when these records change.
+`data/knowledge_base.json` is the only RAG knowledge source for both website and terminal queries, and interview capture saves into that same file. The older `demo_knowledge.json` is retained as a historical import file and is not used for retrieval, indexing, or test expectations. The embedding cache rebuilds automatically when the active knowledge file changes.
 
 `.env` controls paths, models, and the distance threshold. Paths are relative to `backend/`. Old `chroma_db/` and `data/knowledge.json` files, if present, are no longer used and have been left intact.
 
@@ -92,7 +92,13 @@ $result = Invoke-RestMethod -Method Post `
 $result.answer
 ```
 
-See [API_CONTRACT.md](../API_CONTRACT.md). This replaces the previous larger backend API; interview, extraction, transcription, approval and CRUD endpoints are removed. The frontend should use the three endpoints in the new contract.
+See [API_CONTRACT.md](../API_CONTRACT.md). Chat, synthetic expert profiles, persistent feedback, text/audio extraction and reviewed knowledge saving are now available. Approval and statistics endpoints are not included.
+
+## Capture and audio setup
+
+Run `python -m pip install -r requirements.txt` after updating. Audio uses local faster-whisper, CPU int8, and the `tiny` model by default; first use downloads model files into ignored `.models/`. `WHISPER_MODEL` and `WHISPER_CACHE_PATH` are configurable. Record/upload up to five minutes or 25 MB. Temporary audio is deleted after processing; original text/transcriptions are preserved inside the saved knowledge record.
+
+The interview page extracts a draft without writing it, allows review/editing, then atomically appends it to `knowledge_base.json`. Expert profiles come from `experts.json`; feedback is stored in ignored `feedback.json`. Use one backend process per data directory. An unsupported topic returns exactly `No information available.` and the UI opens a prefilled gap report.
 
 ## Tests
 
@@ -100,4 +106,4 @@ See [API_CONTRACT.md](../API_CONTRACT.md). This replaces the previous larger bac
 python -m pytest -q
 ```
 
-Tests use fake Ollama responses and temporary JSON/cache files, so they require no model or network connection.
+Tests use fake Ollama responses and temporary JSON/cache files. They cover topic rejection, canonical no-information answers, feedback persistence, extraction/review/save/retrieval, cache refresh, expert profiles, atomic writes and audio validation. Whisper decoding is stubbed in unit tests; real audio requires installing the updated requirements and downloading the speech model. The ASGI TestClient needs the operating system's local socket support.

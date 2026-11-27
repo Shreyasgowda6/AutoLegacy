@@ -3,6 +3,7 @@
     "id": "54c5968e-9ad3-58f8-bb3e-5444b2605fee",
     "problem": "Engine knocking/rattling during cold start",
     "expert_name": "Synthetic Demo Mechanic 01 (synthetic)",
+    "expert_id": "expert-01",
     "experience_years": 32,
     "domain": "Automotive",
     "category": "Engine mechanical",
@@ -47,6 +48,7 @@
     "id": "c55bbb24-e958-515c-afc3-6d7e029ea6be",
     "problem": "Engine overheating in slow traffic",
     "expert_name": "Synthetic Demo Mechanic 02 (synthetic)",
+    "expert_id": "expert-02",
     "experience_years": 28,
     "domain": "Automotive",
     "category": "Cooling system",
@@ -96,6 +98,7 @@
     "id": "989ebe4a-f07e-5e84-bdcd-01132f280d01",
     "problem": "Rough and unstable engine idle",
     "expert_name": "Synthetic Demo Mechanic 03 (synthetic)",
+    "expert_id": "expert-03",
     "experience_years": 25,
     "domain": "Automotive",
     "category": "Ignition and intake",
@@ -142,6 +145,7 @@
     "id": "0db8d0f2-892a-5b04-878e-7be1c67d303c",
     "problem": "Intermittent crank-no-start when engine is hot",
     "expert_name": "Synthetic Demo Mechanic 04 (synthetic)",
+    "expert_id": "expert-04",
     "experience_years": 30,
     "domain": "Automotive",
     "category": "Starting and electrical",
@@ -187,6 +191,7 @@
     "id": "3034067f-bf0e-5002-935e-0c4a0f5a6e01",
     "problem": "Engine vibration at idle when in gear",
     "expert_name": "Synthetic Demo Mechanic 05 (synthetic)",
+    "expert_id": "expert-05",
     "experience_years": 35,
     "domain": "Automotive",
     "category": "Engine mounts and vibration",
@@ -232,6 +237,7 @@
     "id": "082d9342-1272-53ad-9c1e-bcebd7a662ec",
     "problem": "Excessive fuel consumption on short trips",
     "expert_name": "Synthetic Demo Mechanic 06 (synthetic)",
+    "expert_id": "expert-06",
     "experience_years": 27,
     "domain": "Automotive",
     "category": "Fuel efficiency",
@@ -278,6 +284,7 @@
     "id": "94bf0604-8754-5088-9a38-46f21adec837",
     "problem": "Sudden loss of power under load (limp mode)",
     "expert_name": "Synthetic Demo Mechanic 07 (synthetic)",
+    "expert_id": "expert-07",
     "experience_years": 29,
     "domain": "Automotive",
     "category": "Turbo and boost",
@@ -325,6 +332,7 @@
     "id": "eb32fb55-bb91-5197-8d9c-ee989f1c0bfe",
     "problem": "Engine oil leak and oil loss",
     "expert_name": "Synthetic Demo Mechanic 08 (synthetic)",
+    "expert_id": "expert-08",
     "experience_years": 33,
     "domain": "Automotive",
     "category": "Leaks and seals",
@@ -371,6 +379,7 @@
     "id": "0238b397-5e15-5013-9fd4-30f7cb32b846",
     "problem": "Blue smoke from exhaust at start-up",
     "expert_name": "Synthetic Demo Mechanic 09 (synthetic)",
+    "expert_id": "expert-09",
     "experience_years": 26,
     "domain": "Automotive",
     "category": "Exhaust and emissions",
@@ -417,6 +426,7 @@
     "id": "098d9321-5ba5-5fd7-b01e-55f32a840531",
     "problem": "Engine randomly shuts off while driving",
     "expert_name": "Synthetic Demo Mechanic 10 (synthetic)",
+    "expert_id": "expert-10",
     "experience_years": 31,
     "domain": "Automotive",
     "category": "Electrical",
@@ -456,6 +466,43 @@
       "On engine stall the driver loses power steering assist and brake booster assistance after a few presses",
       "Avoid driving the car until repaired",
       "Disconnect the battery before working on ground cables"
+    ],
+    "source_type": "synthetic"
+  },
+  {
+    "id": "4d52b01f-2015-46ff-8954-c10356f32a80",
+    "problem": "A Renault Clio battery went flat after parking overnight. The interior cabin lamp stayed on after the doors were closed.",
+    "expert_name": "Dana Brooks",
+    "expert_id": "expert-04",
+    "experience_years": 30,
+    "domain": "Automotive",
+    "category": "Starting and electrical",
+    "vehicle_make": "Renault",
+    "vehicle_model": "Clio",
+    "engine_type": null,
+    "original_transcript": "Synthetic interview: A Renault Clio battery went flat after parking overnight. The interior cabin lamp stayed on after the doors were closed. We observed the lamp with the ignition off. The confirmed cause was a door switch stuck in the open position. Replacing the door switch fixed the lamp and the overnight battery drain. The practical lesson is to check whether cabin lamps turn off before replacing a battery. Never short battery terminals.",
+    "symptoms": [
+      "Battery went flat after parking overnight",
+      "Interior cabin lamp stayed on after doors were closed"
+    ],
+    "operating_conditions": [
+      "Parking overnight"
+    ],
+    "possible_causes": [
+      "Door switch stuck in the open position"
+    ],
+    "diagnostic_steps": [
+      "Observed the lamp with the ignition off",
+      "Confirmed cause was a door switch stuck in the open position"
+    ],
+    "confirmed_cause": "Door switch stuck in the open position",
+    "solution": "Replacing the door switch fixed the lamp and the overnight battery drain",
+    "expert_insight": "Practical lesson: Check whether cabin lamps turn off before replacing a battery. Never short battery terminals.",
+    "common_mistakes": [
+      "Not checking if cabin lamps turn off before replacing a battery"
+    ],
+    "safety_precautions": [
+      "Never short battery terminals"
     ],
     "source_type": "synthetic"
   }

@@ -19,6 +19,10 @@ class Settings:
     embedding_model: str = field(default_factory=lambda: os.getenv('OLLAMA_EMBEDDING_MODEL', 'bge-m3:latest'))
     knowledge_path: Path = field(default_factory=lambda: local_path(os.getenv('KNOWLEDGE_PATH', './data/knowledge_base.json')))
     index_path: Path = field(default_factory=lambda: local_path(os.getenv('INDEX_PATH', './data/embeddings.json')))
+    experts_path: Path = field(default_factory=lambda: local_path(os.getenv('EXPERTS_PATH', './data/experts.json')))
+    feedback_path: Path = field(default_factory=lambda: local_path(os.getenv('FEEDBACK_PATH', './data/feedback.json')))
+    whisper_model: str = field(default_factory=lambda: os.getenv('WHISPER_MODEL', 'tiny'))
+    whisper_cache: Path = field(default_factory=lambda: local_path(os.getenv('WHISPER_CACHE_PATH', './.models')))
     max_distance: float = field(default_factory=lambda: float(os.getenv('RELEVANCE_THRESHOLD', '0.65')))
     cors_origins: list[str] = field(default_factory=lambda: os.getenv('CORS_ORIGINS', 'http://localhost:5173,http://localhost:3000').split(','))
 

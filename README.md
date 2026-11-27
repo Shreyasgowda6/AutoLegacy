@@ -31,6 +31,6 @@ npm.cmd ci
 npm.cmd run dev
 ```
 
-Open the Vite URL (normally http://localhost:5173). The original frontend design and presentation content are retained. Search retrieves from the same JSON knowledge base used by the CLI and updates the existing answer card. Expert profiles, related documents and feedback forms remain as originally designed; feedback backend integration is deferred.
+Open the Vite URL (normally http://localhost:5173). The original frontend style is retained. Search uses the JSON knowledge base, missing information opens a gap report, and the expert directory shows ten synthetic profiles. The Expert Interview page accepts text or recorded/uploaded audio, extracts knowledge for review, and stores it for future searches. Install the updated backend requirements for local Whisper audio support.
 
 See [backend instructions](backend/README.md), [frontend instructions](frontend/README.md), and [the shared HTTP API contract](API_CONTRACT.md).

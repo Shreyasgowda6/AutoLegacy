@@ -30,7 +30,7 @@ class FakeOllama:
 
 @pytest.fixture
 def rag(tmp_path):
-    settings = Settings(knowledge_path=tmp_path / 'knowledge.json', index_path=tmp_path / 'embeddings.json')
+    settings = Settings(knowledge_path=tmp_path / 'knowledge.json', index_path=tmp_path / 'embeddings.json', feedback_path=tmp_path / 'feedback.json')
     settings.knowledge_path.write_text(json.dumps([
         {'id': 'overheating', 'problem': 'Engine overheating', 'possible_causes': ['Coolant loss']},
         {'id': 'starting', 'problem': 'Intermittent starting issue'},
@@ -118,7 +118,7 @@ def test_api_without_mode_or_approval(rag):
         assert client.post('/api/chat', json={'question': ' '}).status_code == 422
         assert client.post('/api/chat', json={'question': 'test', 'top_k': 0}).status_code == 422
         assert client.post('/api/knowledge/one/approve').status_code == 404
-        assert len(client.get('/openapi.json').json()['paths']) == 3
+        assert len(client.get('/openapi.json').json()['paths']) == 7
 
 
 def test_cosine_distance():
@@ -158,14 +158,61 @@ def test_missing_model_error_is_actionable(monkeypatch):
         Ollama(Settings()).embed('text')
 
 
-def test_active_knowledge_preserves_new_github_records():
-    from app.config import ROOT
-    source = json.loads((ROOT / 'data/demo_knowledge.json').read_text(encoding='utf-8'))
-    active = RAG(Settings(knowledge_path=ROOT / 'data/knowledge_base.json'), FakeOllama()).records()
-    assert len(active) == len(source) == 10
-    original = {row['id']: row for row in source}
-    for record in active:
-        assert record.problem == original[record.id]['problem']
-        assert record.vehicle_make == original[record.id]['vehicle_make']
-        assert record.original_transcript == original[record.id]['original_transcript']
-        assert record.confirmed_cause == original[record.id]['confirmed_cause']
+def test_only_configured_knowledge_file_is_used(rag):
+    old_demo_file = rag.settings.knowledge_path.parent / 'demo_knowledge.json'
+    old_demo_file.write_text(json.dumps([{'id': 'demo-only', 'problem': 'Buying a new tyre'}]))
+    assert {record.id for record in rag.records()} == {'overheating', 'starting'}
+    response = rag.ask(ChatRequest(question='I want to buy a new tyre'))
+    assert response.insufficient_evidence and response.sources == []
+    assert rag.ollama.embedded == []
+
+
+def test_grounded_answer_survives_contradictory_model_flag(rag, monkeypatch):
+    monkeypatch.setattr(rag.ollama, 'answer', lambda payload: GroundedAnswer(
+        answer='Engine overheating has possible coolant loss. Check the coolant loss [overheating].',
+        source_ids=['overheating'], insufficient_evidence=True))
+    result = rag.ask(ChatRequest(question='Why is the engine overheating?'))
+    assert not result.insufficient_evidence
+    assert result.sources[0].id == 'overheating'
+
+
+def test_real_missing_evidence_is_still_rejected(rag, monkeypatch):
+    monkeypatch.setattr(rag.ollama, 'answer', lambda payload: GroundedAnswer(
+        answer='There is insufficient information about coolant loss [overheating].',
+        source_ids=['overheating'], insufficient_evidence=True))
+    result = rag.ask(ChatRequest(question='Why is the engine overheating?'))
+    assert result.insufficient_evidence and not result.sources
+
+
+def test_explicit_vehicle_limits_model_context(rag):
+    rag.settings.knowledge_path.write_text(json.dumps([
+        {'id': 'toyota', 'problem': 'Engine overheating', 'vehicle_make': 'Toyota', 'vehicle_model': 'Corolla'},
+        {'id': 'hyundai', 'problem': 'Engine overheating', 'vehicle_make': 'Hyundai', 'vehicle_model': 'i30'},
+    ]))
+    result = rag.ask(ChatRequest(question='Why does the Toyota Corolla overheat?'))
+    assert [r['id'] for r in rag.ollama.answered[0]['records']] == ['toyota']
+    assert result.sources[0].id == 'toyota'
+
+
+def test_filtering_happens_before_top_k(rag):
+    rag.settings.knowledge_path.write_text(json.dumps([
+        {'id': 'irrelevant', 'problem': 'Engine vibration'},
+        {'id': 'relevant', 'problem': 'Intermittent starting issue'},
+    ]))
+    response = rag.ask(ChatRequest(question='Intermittent starting problem', top_k=1))
+    assert response.sources[0].id == 'relevant'
+
+
+def test_citation_label_does_not_discard_valid_answer(rag, monkeypatch):
+    monkeypatch.setattr(rag.ollama, 'answer', lambda payload: GroundedAnswer(
+        answer='Possible coolant loss [record-id: overheating].', source_ids=['overheating'], insufficient_evidence=False))
+    result = rag.ask(ChatRequest(question='Why is it overheating?'))
+    assert not result.insufficient_evidence
+    assert '[overheating]' in result.answer
+
+
+def test_unknown_inline_reference_is_still_rejected(rag, monkeypatch):
+    monkeypatch.setattr(rag.ollama, 'answer', lambda payload: GroundedAnswer(
+        answer='Possible coolant loss [record-id: invented].', source_ids=['overheating'], insufficient_evidence=False))
+    result = rag.ask(ChatRequest(question='Why is it overheating?'))
+    assert result.insufficient_evidence
