@@ -1,33 +1,19 @@
-# AutoLegacy
+# AutoLegacy — Demo RAG
 
-Preserving decades of automotive experience.
+A basic local RAG pipeline for synthetic automotive knowledge:
 
-Preserve practical knowledge from experienced automobile mechanics and make approved expertise available to junior mechanics.
+**JSON records → Ollama embeddings → cosine similarity retrieval → Ollama answer with sources**
 
-## Project layout
+The backend uses `qwen3:1.7b` for answers and `bge-m3:latest` for embeddings. No API key, approval workflow, mode toggle, or external vector database is required. The ten bundled records are synthetic demonstration examples.
 
-- `backend/`: Python and FastAPI backend.
-- `frontend/`: React and Vite frontend.
-- `API_CONTRACT.md`: shared API specification, to be added during backend implementation.
-
-The FastAPI backend is implemented in `backend/`. See [backend setup and workflow](backend/README.md) and [the shared API contract](API_CONTRACT.md). The frontend is developed separately.
-
-## Collaboration
-
-Use `main` for shared work. Develop the backend on `backend` and the frontend on `frontend`, then merge changes through pull requests.
+In an activated Python environment:
 
 ```powershell
-git switch backend
-# Work in backend/, then commit your changes.
-git add backend
-git commit -m "Implement backend"
+cd backend
+python -m pip install -r requirements.txt
+python -m app.cli
 ```
 
-The frontend developer can create their branch from `main`:
+Type questions in the terminal; type `exit` to stop. Ollama must be running with both configured models installed.
 
-```powershell
-git switch main
-git switch -c frontend
-```
-
-Agree on the shared API contract before integrating the applications. Keep API keys in local `.env` files and commit only `.env.example` files containing placeholders.
+See [backend instructions](backend/README.md) and [the small HTTP API contract](API_CONTRACT.md). `frontend/` remains available for the separately developed UI.
